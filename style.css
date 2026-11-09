@@ -191,9 +191,8 @@ section{padding:38px 0}
 .slot{padding:12px 6px;font-size:.95rem}
 .stats{margin-top:-28px}
 .stat{font-size:.78rem;line-height:1.35}
-.tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-left:-18px;margin-right:-18px;padding:2px 18px 8px;scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tab{flex:none;white-space:nowrap}
+.tabs{flex-wrap:wrap;gap:8px;overflow:visible}
+.tab{flex:1 1 auto;padding:8px 12px;font-size:.95rem;text-align:center}
 .quote{margin-top:32px;padding:0 18px}
 form .btn{width:100%}
 .contact .btn{width:100%}
