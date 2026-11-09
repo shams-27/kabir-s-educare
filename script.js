@@ -7,7 +7,8 @@ const courses = [
   { n: "জুনিয়র বৃত্তি প্রস্তুতি কোর্স", c: "৮ম শ্রেণি", g: ["junior"], d: ["সপ্তাহে ৬ দিন", "সপ্তাহে পরীক্ষা ১টি"], p: "2,000/-", u: "মাসিক", f: "ভর্তি ফি: ২,০০০/- (ফ্রি অফারে)" },
   { n: "বাংলা + বাংলাদেশ ও বিশ্বপরিচয়", c: "৬ষ্ঠ–১০ম শ্রেণি", g: ["mid"], d: ["সপ্তাহে ২ দিন (শুক্র–শনি)"], p: "700/-", u: "মাসিক", f: "ভর্তি ফি: ৫০০/-" }];
 const grid = document.getElementById('courseGrid'), sel = document.getElementById('courseSel');
-function render(f) { grid.innerHTML = courses.filter(c => f === 'all' || c.g.includes(f)).map(c => `<div class="card course"><h3>${c.n}</h3><div class="cls">${c.c}</div><ul>${c.d.map(x => `<li>${x}</li>`).join('')}</ul><div class="price">${c.p} <small>${c.u}</small></div>${c.f ? `<span class="free">${c.f}</span>` : ''}<a class="btn" href="#admission" data-c="${c.n}">ভর্তি হতে চাই</a></div>`).join('') }
+const bn = t => t.replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+function render(f) { grid.innerHTML = courses.filter(c => f === 'all' || c.g.includes(f)).map(c => `<div class="card course"><h3>${c.n}</h3><div class="cls">${c.c}</div><ul>${c.d.map(x => `<li>${x}</li>`).join('')}</ul><div class="price">${bn(c.p)} <small>${c.u}</small></div>${c.f ? `<span class="free">${c.f}</span>` : ''}<a class="btn" href="#admission" data-c="${c.n}">ভর্তি হতে চাই</a></div>`).join('') }
 render('all');
 sel.innerHTML = courses.map(c => `<option>${c.n}</option>`).join('');
 document.getElementById('tabs').onclick = e => { const b = e.target.closest('.tab'); if (!b) return;[...e.currentTarget.children].forEach(x => x.classList.toggle('on', x === b)); render(b.dataset.f) };
