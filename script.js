@@ -1,17 +1,20 @@
 const courses = [
-  { n: "একাডেমিক English ব্যাচ", c: "৪র্থ–দ্বাদশ শ্রেণি (১st & ২nd Paper)", g: ["junior", "mid", "high"], d: ["সপ্তাহে ৩ দিন", "মাসে পরীক্ষা ২টি"], p: "1,000/-", u: "মাসিক", f: "ভর্তি ফি: ১,০০০/- (ফ্রি অফারে)" },
-  { n: "Basic Grammar কোর্স", c: "৬ষ্ঠ–৯ম শ্রেণি (একত্রে)", g: ["mid"], d: ["লেকচার ৪০টি", "মোট পরীক্ষা ৪টি"], p: "4,000/-", u: "একবারেই" },
-  { n: "Free-Hand Writing কোর্স", c: "৬ষ্ঠ–৯ম ও ৯ম–১১শ শ্রেণি", g: ["mid", "high"], d: ["লেকচার ৪০টি", "মোট পরীক্ষা ৪টি"], p: "4,000/-", u: "একবারেই" },
-  { n: "SSC-English প্রস্তুতি কোর্স", c: "বোর্ড পরীক্ষার পূর্বে ৪ মাস", g: ["high"], d: ["লেকচার ৭০টি", "মোট পরীক্ষা ১০টি"], p: "6,000/-", u: "একবারেই" },
-  { n: "HSC English কোর্স কমপ্লিট", c: "বছরের যে কোনো সময়", g: ["high"], d: ["লেকচার ৭০টি", "মোট পরীক্ষা ১০টি"], p: "6,000/-", u: "একবারেই" },
-  { n: "জুনিয়র বৃত্তি প্রস্তুতি কোর্স", c: "৮ম শ্রেণি", g: ["junior"], d: ["সপ্তাহে ৬ দিন", "সপ্তাহে পরীক্ষা ১টি"], p: "2,000/-", u: "মাসিক", f: "ভর্তি ফি: ২,০০০/- (ফ্রি অফারে)" },
-  { n: "বাংলা + বাংলাদেশ ও বিশ্বপরিচয়", c: "৬ষ্ঠ–১০ম শ্রেণি", g: ["mid"], d: ["সপ্তাহে ২ দিন (শুক্র–শনি)"], p: "700/-", u: "মাসিক", f: "ভর্তি ফি: ৫০০/-" }];
+  { n: "একাডেমিক English ব্যাচ", c: "৪র্থ–দ্বাদশ শ্রেণি (1st & 2nd Paper)", g: ["junior", "mid", "high"], d: ["সপ্তাহে ৩ দিন", "মাসে পরীক্ষা ২টি"], p: "1,000/-", u: "মাসিক (প্রি-পেইড)", f: "ভর্তি ফি: ১,০০০/- (প্রি-পেইড)" },
+  { n: "Basic Grammar কোর্স", c: "৬ষ্ঠ–৮ম ও ৯ম–দ্বাদশ শ্রেণি (একত্রে)", g: ["junior", "mid", "high"], d: ["লেকচার ৪০টি", "মোট পরীক্ষা ৫টি"], p: "4,000/-", u: "এককালীন" },
+  { n: "Free-Hand Writing কোর্স", c: "৬ষ্ঠ–৮ম ও ৯ম–১১শ শ্রেণি", g: ["junior", "mid", "high"], d: ["লেকচার ৪০টি", "মোট পরীক্ষা ৫টি"], p: "4,000/-", u: "এককালীন" },
+  { n: "SSC-English প্রস্তুতি কোর্স", c: "বোর্ড পরীক্ষার পূর্বে ৪ মাস", g: ["mid", "high"], d: ["লেকচার ৭০টি", "মোট পরীক্ষা ১০টি"], p: "6,000/-", u: "এককালীন" },
+  { n: "HSC English কোর্স কমপ্লিট", c: "বছরের যে কোনো সময়", g: ["high"], d: ["লেকচার ৭০টি", "মোট পরীক্ষা ১০টি"], p: "6,000/-", u: "এককালীন" },
+  { n: "জুনিয়র বৃত্তি প্রস্তুতি কোর্স", c: "৮ম শ্রেণি", g: ["junior", "mid"], d: ["সপ্তাহে ৬ দিন", "সপ্তাহে পরীক্ষা ১টি", "বিষয়: ইং-১, ইং-২, বাং-১, বাং-২, বাবিপ"], p: "2,000/-", u: "মাসিক (প্রি-পেইড)", f: "ভর্তি ফি: ২,০০০/- (প্রি-পেইড)" },
+  { n: "বাংলা + বাংলাদেশ ও বিশ্বপরিচয়", c: "৬ষ্ঠ–১০ম শ্রেণি", g: ["junior", "mid", "high"], d: ["সপ্তাহে ২ দিন (শুক্র–শনি)"], p: "700/-", u: "মাসিক (প্রি-পেইড)", f: "ভর্তি ফি: ৫০০/- (প্রি-পেইড)" }];
 const grid = document.getElementById('courseGrid'), sel = document.getElementById('courseSel');
+const reduceMotion = matchMedia('(prefers-reduced-motion:reduce)').matches;
 const bn = t => t.replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+// keeps the "on" class and aria-selected in sync for any tab group
+const selectTab = (group, active) => [...group].forEach(x => { const on = x === active; x.classList.toggle('on', on); x.setAttribute('aria-selected', on) });
 function render(f) { grid.innerHTML = courses.filter(c => f === 'all' || c.g.includes(f)).map(c => `<div class="card course"><h3>${c.n}</h3><div class="cls">${c.c}</div><ul>${c.d.map(x => `<li>${x}</li>`).join('')}</ul><div class="price">${bn(c.p)} <small>${c.u}</small></div>${c.f ? `<span class="free">${c.f}</span>` : ''}<a class="btn" href="#admission" data-c="${c.n}">ভর্তি হতে চাই</a></div>`).join('') }
 render('all');
 sel.innerHTML = courses.map(c => `<option>${c.n}</option>`).join('');
-document.getElementById('tabs').onclick = e => { const b = e.target.closest('.tab'); if (!b) return;[...e.currentTarget.children].forEach(x => x.classList.toggle('on', x === b)); render(b.dataset.f) };
+document.getElementById('tabs').onclick = e => { const b = e.target.closest('.tab'); if (!b) return; selectTab(e.currentTarget.children, b); render(b.dataset.f) };
 grid.onclick = e => { const a = e.target.closest('[data-c]'); if (a) sel.value = a.dataset.c };
 const B = {
   morning: { d: 'শনি–সোম–বুধ  |  রবি–মঙ্গল–বৃহস্পতি', s: ['সকাল ৭:০০–৮:০০', 'সকাল ৮:০০–৯:০০', 'সকাল ৯:৩০–১০:৩০', 'সকাল ১০:৩০–১১:৩০', 'সকাল ১১:৩০–১২:৩০'] },
@@ -19,13 +22,22 @@ const B = {
 };
 function showB(k) { document.getElementById('days').innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-cal"/></svg> ' + B[k].d; document.getElementById('slots').innerHTML = B[k].s.map(x => `<div class="slot">${x}</div>`).join('') }
 showB('morning');
-document.querySelectorAll('[data-b]').forEach(b => b.onclick = () => { document.querySelectorAll('[data-b]').forEach(x => x.classList.toggle('on', x === b)); showB(b.dataset.b) });
+document.querySelectorAll('[data-b]').forEach(b => b.onclick = () => { selectTab(document.querySelectorAll('[data-b]'), b); showB(b.dataset.b) });
+
+/* ===== admission form → WhatsApp ===== */
 document.getElementById('form').onsubmit = e => {
   e.preventDefault(); const f = new FormData(e.target);
   const m = `আসসালামু আলাইকুম, আমি ভর্তি হতে চাই।%0Aনাম: ${encodeURIComponent(f.get('name'))}%0Aমোবাইল: ${encodeURIComponent(f.get('phone'))}%0Aকোর্স: ${encodeURIComponent(f.get('course'))}%0Aব্যাচ: ${encodeURIComponent(f.get('batch'))}`;
-  window.open('https://wa.me/8801718784105?text=' + m, '_blank'); toast('WhatsApp খুলছে…')
+  const url = 'https://wa.me/8801718784105?text=' + m;
+  const w = window.open(url, '_blank');
+  // some in-app browsers block window.open, so always offer a manual link
+  const fb = document.getElementById('waFb'), link = document.getElementById('waLink');
+  if (fb && link) { link.href = url; fb.hidden = false }
+  toast(w ? 'WhatsApp খুলছে…' : 'WhatsApp খোলেনি? নিচের লিংকে ক্লিক করুন')
 };
 function toast(t) { const x = document.getElementById('toast'); x.textContent = t; x.style.display = 'block'; setTimeout(() => x.style.display = 'none', 2500) }
+
+/* ===== mobile menu ===== */
 const menu = document.getElementById('menu'), menuBtn = document.getElementById('menuBtn');
 menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.setAttribute('aria-controls', 'menu');
 const setMenu = o => { menu.classList.toggle('open', o); menuBtn.setAttribute('aria-expanded', o) };
@@ -35,7 +47,16 @@ document.addEventListener('click', e => { if (!e.target.closest('header')) setMe
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false) });
 matchMedia('(min-width:1025px)').addEventListener('change', e => { if (e.matches) setMenu(false) });
 document.getElementById('yr').textContent = new Date().getFullYear().toLocaleString('bn-BD', { useGrouping: false });
-const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { const el = x.target, n = +el.dataset.n, s = el.dataset.s || ''; let i = 0; const t = setInterval(() => { i++; el.textContent = (i * n / 30 | 0).toLocaleString('bn-BD') + s; if (i >= 30) clearInterval(t) }, 30); io.unobserve(el) } }));
+
+/* ===== stat counters (skip the count-up for reduced motion) ===== */
+const io = new IntersectionObserver(es => es.forEach(x => {
+  if (!x.isIntersecting) return;
+  const el = x.target, n = +el.dataset.n, s = el.dataset.s || '';
+  io.unobserve(el);
+  if (reduceMotion) { el.textContent = n.toLocaleString('bn-BD') + s; return }
+  let i = 0;
+  const t = setInterval(() => { i++; el.textContent = (i * n / 30 | 0).toLocaleString('bn-BD') + s; if (i >= 30) clearInterval(t) }, 30);
+}));
 document.querySelectorAll('[data-n]').forEach(e => io.observe(e));
 
 /* ===== animated English-learning pattern ===== */
@@ -60,6 +81,20 @@ document.querySelectorAll('[data-n]').forEach(e => io.observe(e));
   if (hf) { hf.style.setProperty('--h', (hf.parentElement.offsetHeight + 160) + 'px'); fill(hf, small ? 4 : 6, 30, 50) }
   addEventListener('orientationchange', () => setTimeout(() => { if (hf) hf.style.setProperty('--h', (hf.parentElement.offsetHeight + 160) + 'px') }, 300));
   addEventListener('resize', () => { if (hf) hf.style.setProperty('--h', (hf.parentElement.offsetHeight + 160) + 'px') });
+})();
+
+/* ===== offer countdown (offer valid before 15 December 2026) =====
+   The end date is fixed, so the countdown stays hidden after the offer
+   expires instead of restarting for next year. Update it for a new offer. */
+(function () {
+  const OFFER_END = new Date(2026, 11, 14, 23, 59, 59); // 14 Dec 2026, 11:59:59 PM
+  const f = document.getElementById('offerFoot'), t = document.getElementById('offerTxt');
+  if (!f || !t) return;
+  const now = new Date();
+  if (OFFER_END < now) return;
+  const d = Math.floor((OFFER_END - now) / 864e5);
+  t.textContent = d === 0 ? 'আজই অফারের শেষ দিন!' : 'অফার শেষ হতে আর ' + d.toLocaleString('bn-BD', { useGrouping: false }) + ' দিন বাকি';
+  f.hidden = false;
 })();
 
 /* ===== scroll reveal ===== */

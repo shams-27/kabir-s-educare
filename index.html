@@ -9,16 +9,31 @@
   <meta name="theme-color" content="#252319">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>কবীর’স ইংরেজি শিক্ষাকেন্দ্র, বগুড়া</title>
+  <meta name="description"
+    content="বগুড়ায় ৪র্থ–দ্বাদশ শ্রেণির ইংরেজি কোচিং। গ্রামার, রাইটিং, SSC ও HSC প্রস্তুতি কোর্স। ভর্তি চলছে — ১৫ ডিসেম্বরের পূর্বে ২৫% ছাড়।">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="bn_BD">
+  <meta property="og:title" content="কবীর’স ইংরেজি শিক্ষাকেন্দ্র, বগুড়া">
+  <meta property="og:description"
+    content="৪র্থ–দ্বাদশ শ্রেণির ইংরেজি কোচিং। ভর্তি চলছে — ১৫ ডিসেম্বরের পূর্বে ২৫% ছাড়।">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23252319'/%3E%3Ctext x='32' y='45' font-size='36' font-weight='700' text-anchor='middle' fill='%23c8963e' font-family='Georgia,serif'%3EK%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
     rel="stylesheet">
   <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&text=%E0%A7%A6%E0%A7%A7%E0%A7%A8%E0%A7%A9%E0%A7%AA%E0%A7%AB%E0%A7%AC%E0%A7%AD%E0%A7%AE%E0%A7%AF"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap&text=%E0%A7%A6%E0%A7%A7%E0%A7%A8%E0%A7%A9%E0%A7%AA%E0%A7%AB%E0%A7%AC%E0%A7%AD%E0%A7%AE%E0%A7%AF"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="style.css?v=10">
 </head>
 
 <body>
+  <noscript>
+    <p class="ns">কোর্স ও ব্যাচের তথ্য দেখতে JavaScript চালু করুন, অথবা সরাসরি কল করুন: <a href="tel:+8801718784105">০১৭১৮-৭৮৪১০৫</a></p>
+  </noscript>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
       <symbol id="i-pin" viewBox="0 0 24 24">
@@ -50,6 +65,14 @@
       </symbol>
       <symbol id="i-chat" viewBox="0 0 24 24">
         <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5Z" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </symbol>
+      <symbol id="i-gift" viewBox="0 0 24 24">
+        <path
+          d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7ZM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7Z" />
       </symbol>
       <symbol id="i-pencil" viewBox="0 0 24 24">
         <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
@@ -91,8 +114,19 @@
                 <use href="#i-phone" />
               </svg> ০১৭১৮-৭৮৪১০৫</a></div>
         </div>
-        <div class="offer"><span class="sp">SPECIAL OFFER</span><b>২৫% ছাড়</b>
-          <p style="margin:.6em 0 0"><strong>১৫ ডিসেম্বরের পূর্বে</strong> ভর্তি নিশ্চিত করলেই ভর্তি ফি ফ্রি!</p>
+        <div class="offer-wrap">
+          <div class="offer">
+            <div class="o-pat" aria-hidden="true"></div>
+            <span class="sp">SPECIAL OFFER</span><b>২৫% ছাড়</b>
+            <p style="margin:.6em 0 0"><strong>১৫ ডিসেম্বরের পূর্বে</strong> ভর্তি নিশ্চিত করলেই ভর্তি ফি তে <strong>২৫%
+                ছাড় !</strong></p>
+            <div class="o-foot" id="offerFoot" hidden>
+              <div class="o-tear"></div>
+              <div class="o-left"><svg class="ic" aria-hidden="true">
+                  <use href="#i-clock" />
+                </svg><span id="offerTxt"></span></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -100,7 +134,7 @@
     <div class="wrap stats">
       <div class="stat"><b data-n="25">০</b>বছরের অভিজ্ঞতা</div>
       <div class="stat"><b data-n="7">০</b>টি কোর্স</div>
-      <div class="stat"><b data-n="25" data-s="%">০</b>বিশেষ ছাড়</div>
+      <div class="stat"><b data-n="17">০</b>টি বিশেষ সুবিধা</div>
     </div>
 
     <blockquote class="quote wrap">ইংরেজি শেখা হোক বুঝে, মুখস্থ করে নয়।<cite>কবীর’স শিক্ষানীতি</cite></blockquote>
@@ -136,9 +170,9 @@
         <span class="eyebrow">Courses &amp; Fees</span>
         <h2>কোর্স ও ফি</h2>
         <p class="sub">শ্রেণি অনুযায়ী আপনার কোর্সটি বেছে নিন</p>
-        <div class="tabs" id="tabs">
-          <button class="tab on" data-f="all">সব কোর্স</button><button class="tab"
-            data-f="junior">৪র্থ–৮ম</button><button class="tab" data-f="mid">৬ষ্ঠ–১০ম</button><button class="tab"
+        <div class="tabs" id="tabs" role="tablist" aria-label="শ্রেণি অনুযায়ী কোর্স">
+          <button class="tab on" role="tab" aria-selected="true" data-f="all">সব কোর্স</button><button class="tab" role="tab" aria-selected="false"
+            data-f="junior">৪র্থ–৮ম</button><button class="tab" role="tab" aria-selected="false" data-f="mid">৬ষ্ঠ–১০ম</button><button class="tab" role="tab" aria-selected="false"
             data-f="high">SSC / HSC</button>
         </div>
         <div class="grid" id="courseGrid"></div>
@@ -150,12 +184,17 @@
         <span class="eyebrow">Batch Schedule</span>
         <h2>ব্যাচ সময়সূচি</h2>
         <p class="sub">নিজের সুবিধামতো সময় বেছে নিন</p>
-        <div class="tabs"><button class="tab on" data-b="morning">প্রভাতি ব্যাচ</button><button class="tab"
+        <div class="tabs" role="tablist" aria-label="ব্যাচের সময়"><button class="tab on" role="tab" aria-selected="true" data-b="morning">প্রভাতি ব্যাচ</button><button class="tab" role="tab" aria-selected="false"
             data-b="evening">বৈকালিক ও সান্ধ্য ব্যাচ</button></div>
         <div class="days" id="days"></div>
         <div class="slots" id="slots"></div>
-        <p class="sub" style="margin-top:18px">কল করে তোমার ব্যাচের সময় জেনে নিতে পারো, অথবা ২০ জন মিলে পছন্দের ব্যাচ
-          সময় নিজেরাই সিলেক্ট করতে পারো।</p>
+        <div class="b-note">
+          <p>কল করে তোমার ব্যাচের সময় জেনে নিতে পারো, অথবা ২০ জন মিলে পছন্দের ব্যাচ সময় নিজেরাই সিলেক্ট
+            করতে পারো।</p>
+          <a class="btn b-call" href="tel:+8801718784105"><svg class="ic" aria-hidden="true">
+              <use href="#i-phone" />
+            </svg> ০১৭১৮-৭৮৪১০৫</a>
+        </div>
       </div>
     </section>
 
@@ -207,8 +246,9 @@
         <p class="sub">ফরম পূরণ করলে WhatsApp-এ আমাদের কাছে বার্তা চলে যাবে</p>
         <form id="form">
           <label>শিক্ষার্থীর নাম<input name="name" required placeholder="আপনার নাম"></label>
-          <label>মোবাইল নম্বর<input name="phone" required pattern="[0-9০-৯+\- ]{10,16}" placeholder="01XXXXXXXXX"
-              inputmode="tel"></label>
+          <label>মোবাইল নম্বর<input name="phone" type="tel" required pattern="(\+?88)?01[3-9][0-9]{8}|(\+?৮৮)?০১[৩-৯][০-৯]{8}"
+              title="সঠিক মোবাইল নম্বর দিন, যেমন: 01712345678" placeholder="01XXXXXXXXX" inputmode="tel"
+              autocomplete="tel"></label>
           <label>কোর্স<select name="course" id="courseSel"></select></label>
           <label>পছন্দের ব্যাচ<select name="batch">
               <option>প্রভাতি ব্যাচ</option>
@@ -217,6 +257,7 @@
             </select></label>
           <button class="btn" type="submit">ভর্তির আবেদন পাঠান</button>
         </form>
+        <p class="wa-fb" id="waFb" hidden>WhatsApp না খুললে <a id="waLink" href="#" target="_blank" rel="noopener">এখানে ক্লিক করুন</a></p>
       </div>
     </section>
 
@@ -226,7 +267,7 @@
           <h2>যোগাযোগ</h2>
           <p><svg class="ic" aria-hidden="true">
               <use href="#i-pin" />
-            </svg> <strong>ঠিকানা:</strong> হাকিম মোড়, বগুড়া</p>
+            </svg> <strong>ঠিকানা:</strong> হাকির মোড়, বগুড়া</p>
           <p><svg class="ic" aria-hidden="true">
               <use href="#i-phone" />
             </svg> <strong>মোবাইল:</strong> <a href="tel:+8801718784105" style="color:var(--pri)">০১৭১৮-৭৮৪১০৫</a></p>
@@ -243,11 +284,11 @@
     </section>
   </main>
 
-  <footer>© <span id="yr"></span> কবীর’স ইংরেজি শিক্ষাকেন্দ্র · হাকিম মোড়, বগুড়া · ০১৭১৮-৭৮৪১০৫</footer>
+  <footer>© <span id="yr"></span> কবীর’স ইংরেজি শিক্ষাকেন্দ্র · হাকির মোড়, বগুড়া · ০১৭১৮-৭৮৪১০৫</footer>
   <a class="float" href="https://wa.me/8801718784105" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true">
       <use href="#i-chat" />
     </svg> WhatsApp</a>
-  <div id="toast"></div>
+  <div id="toast" role="status" aria-live="polite"></div>
 
   <script src="script.js?v=7"></script>
 </body>
