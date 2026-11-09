@@ -420,6 +420,17 @@ select {
    color: var(--text)
 }
 
+/* Custom arrow so we fully control the right spacing */
+select {
+   appearance: none;
+   -webkit-appearance: none;
+   padding-right: 2.8em;
+   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23b9b09a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+   background-repeat: no-repeat;
+   background-position: right 14px center;
+   background-size: 14px;
+}
+
 label {
    font-weight: 500;
    display: grid;
@@ -1359,15 +1370,21 @@ select {
 .course {
    display: flex;
    flex-direction: column;
-   position: relative
+   position: relative;
+   overflow: hidden;
+   padding-top: 50px;
 }
 
 .course .price {
-   margin-bottom: 14px
+   margin-top: auto;
+   /* keeps price + button at the bottom together */
+   padding-top: 18px;
+   /* ← this creates the space above the amount */
+   margin-bottom: 12px;
 }
 
 .course .btn {
-   margin-top: auto
+   margin-top: 0;
 }
 
 /* Fee badge: corner tag fixed flush to the card's top-right corner */
