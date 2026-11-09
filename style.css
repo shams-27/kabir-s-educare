@@ -952,11 +952,6 @@ h1 em {
 
 .logo .lg1 {
    display: inline-block;
-   transition: transform .4s
-}
-
-.logo:hover .lg1 {
-   transform: rotate(-4deg) scale(1.06)
 }
 
 .why .card.in:before {
