@@ -2296,3 +2296,16 @@ form>.btn[type="submit"] {
       background: var(--card)
    }
 }
+
+/* header: dark bar with a gold hairline so it separates from the green hero */
+header {
+   background: var(--card);
+   border-bottom: 1px solid rgba(217, 164, 65, .45);
+   box-shadow: 0 4px 18px rgba(0, 0, 0, .35)
+}
+
+@media(max-width:1024px) {
+   nav ul {
+      border-top: 1px solid rgba(255, 255, 255, .18)
+   }
+}
