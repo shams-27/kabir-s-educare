@@ -76,9 +76,9 @@ document.querySelectorAll('[data-n]').forEach(e => io.observe(e));
     }
   }
   const small = matchMedia('(max-width:700px)').matches;
-  fill(document.getElementById('bgfx'), small ? 4 : 7, 28, 44);
+  fill(document.getElementById('bgfx'), small ? 12 : 24, 28, 44);
   const hf = document.getElementById('heroFx');
-  if (hf) { hf.style.setProperty('--h', (hf.parentElement.offsetHeight + 160) + 'px'); fill(hf, small ? 4 : 6, 30, 50) }
+  if (hf) { hf.style.setProperty('--h', (hf.parentElement.offsetHeight + 160) + 'px'); fill(hf, small ? 8 : 18, 30, 50) }
   addEventListener('orientationchange', () => setTimeout(() => { if (hf) hf.style.setProperty('--h', (hf.parentElement.offsetHeight + 160) + 'px') }, 300));
   addEventListener('resize', () => { if (hf) hf.style.setProperty('--h', (hf.parentElement.offsetHeight + 160) + 'px') });
 })();

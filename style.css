@@ -2631,3 +2631,118 @@ header {
       font-size: clamp(1.05rem, 7.6cqi, 1.6rem)
    }
 }
+
+/* ===== "Why us": 3 themed cards with per-item icons ===== */
+.why-groups {
+   display: grid;
+   grid-template-columns: repeat(3, minmax(0, 1fr));
+   gap: 16px;
+   align-items: stretch
+}
+
+.why .card.why-group {
+   display: block;
+   padding: 22px 22px 10px;
+   font-size: 1rem
+}
+
+.why .card.why-group:before {
+   content: none
+}
+
+.why-group h3 {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   margin: 0 0 6px;
+   padding-bottom: 14px;
+   font-size: 1.25rem;
+   border-bottom: 2px solid var(--gold)
+}
+
+.wg-ic {
+   flex: none;
+   display: grid;
+   place-items: center;
+   width: 40px;
+   height: 40px;
+   border-radius: 11px;
+   color: var(--gold);
+   background: rgba(217, 164, 65, .14);
+   border: 1px solid rgba(217, 164, 65, .35)
+}
+
+.wg-ic .ic {
+   width: 20px;
+   height: 20px
+}
+
+.card .wg-list {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   color: var(--text)
+}
+
+.wg-list li {
+   display: flex;
+   align-items: center;
+   gap: 14px;
+   padding: 12px 0;
+   line-height: 1.5;
+   font-weight: 500;
+   border-bottom: 1px solid var(--line)
+}
+
+.wg-list li:last-child {
+   border-bottom: 0
+}
+
+.ti {
+   flex: none;
+   display: grid;
+   place-items: center;
+   width: 34px;
+   height: 34px;
+   border-radius: 9px;
+   color: var(--gold);
+   background: rgba(217, 164, 65, .1);
+   transition: background .25s, color .25s
+}
+
+.ti .ic {
+   width: 18px;
+   height: 18px
+}
+
+.wg-list li:hover .ti {
+   background: var(--gold);
+   color: var(--on-btn)
+}
+
+@media(hover:none) {
+   .wg-list li:hover .ti {
+      background: rgba(217, 164, 65, .1);
+      color: var(--gold)
+   }
+}
+
+@media(max-width:1024px) {
+   .why-groups {
+      grid-template-columns: 1fr 1fr
+   }
+
+   .why-groups>.why-group:last-child {
+      grid-column: 1 / -1
+   }
+}
+
+@media(max-width:640px) {
+   .why-groups {
+      grid-template-columns: 1fr
+   }
+
+   .why .card.why-group {
+      padding: 18px 16px 6px
+   }
+}
