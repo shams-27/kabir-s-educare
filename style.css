@@ -2276,3 +2276,23 @@ form>.btn[type="submit"] {
       border-bottom: 0
    }
 }
+
+/* hamburger button: no border; menu panel in the secondary (green) colour */
+#menuBtn {
+   border: 0;
+   background: none;
+   padding: 6px 8px
+}
+
+@media(max-width:1024px) {
+   nav ul {
+      background: var(--sec)
+   }
+}
+
+/* menu panel: dark */
+@media(max-width:1024px) {
+   nav ul {
+      background: var(--card)
+   }
+}
