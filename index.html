@@ -27,7 +27,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap&text=%E0%A7%A6%E0%A7%A7%E0%A7%A8%E0%A7%A9%E0%A7%AA%E0%A7%AB%E0%A7%AC%E0%A7%AD%E0%A7%AE%E0%A7%AF"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=14">
+  <link rel="stylesheet" href="style.css?v=24">
 </head>
 
 <body>
@@ -242,6 +242,8 @@
         <span class="eyebrow">Admission</span>
         <h2>ভর্তি ফরম</h2>
         <p class="sub">ফরম পূরণ করলে WhatsApp-এ আমাদের কাছে বার্তা চলে যাবে</p>
+        <div class="adm">
+        <div class="adm-form">
         <form id="form">
           <label>শিক্ষার্থীর নাম<input name="name" required placeholder="আপনার নাম"></label>
           <label>মোবাইল নম্বর<input name="phone" type="tel" required pattern="(\+?88)?01[3-9][0-9]{8}|(\+?৮৮)?০১[৩-৯][০-৯]{8}"
@@ -256,6 +258,14 @@
           <button class="btn" type="submit">ভর্তির আবেদন পাঠান</button>
         </form>
         <p class="wa-fb" id="waFb" hidden>WhatsApp না খুললে <a id="waLink" href="#" target="_blank" rel="noopener">এখানে ক্লিক করুন</a></p>
+        </div>
+        <aside class="adm-offer" id="admOffer" hidden>
+          <span class="eyebrow">Special Offer</span>
+          <b class="adm-big">২৫% ছাড়</b>
+          <p><strong>১৫ ডিসেম্বরের পূর্বে</strong> ভর্তি নিশ্চিত করলেই ভর্তি ফি তে <strong>২৫% ছাড়!</strong></p>
+          <div class="o-left"><svg class="ic" aria-hidden="true"><use href="#i-clock" /></svg><span id="admOfferTxt"></span></div>
+        </aside>
+        </div>
       </div>
     </section>
 

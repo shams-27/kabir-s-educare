@@ -95,6 +95,8 @@ document.querySelectorAll('[data-n]').forEach(e => io.observe(e));
   const d = Math.floor((OFFER_END - now) / 864e5);
   t.textContent = d === 0 ? 'আজই অফারের শেষ দিন!' : 'অফার শেষ হতে আর ' + d.toLocaleString('bn-BD', { useGrouping: false }) + ' দিন বাকি';
   f.hidden = false;
+  const ao = document.getElementById('admOffer'), at = document.getElementById('admOfferTxt');
+  if (ao && at) { at.textContent = t.textContent; ao.hidden = false }
 })();
 
 /* ===== scroll reveal ===== */
@@ -109,3 +111,12 @@ function reveal(root) {
 }
 reveal();
 ['courseGrid', 'slots'].forEach(id => new MutationObserver(() => reveal(document.getElementById(id))).observe(document.getElementById(id), { childList: true }));
+
+/* ===== admission offer card: animate in when scrolled into view ===== */
+(function () {
+  const c = document.getElementById('admOffer');
+  if (!c) return;
+  new IntersectionObserver((es, o) => es.forEach(x => {
+    if (x.isIntersecting) { x.target.classList.add('show'); o.unobserve(x.target) }
+  }), { threshold: .2 }).observe(c);
+})();

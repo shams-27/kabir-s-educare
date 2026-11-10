@@ -2309,3 +2309,325 @@ header {
       border-top: 1px solid rgba(255, 255, 255, .18)
    }
 }
+
+/* ===== admission: form + offer reminder ===== */
+.adm {
+   display: grid;
+   grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+   gap: 56px;
+   align-items: start
+}
+
+.adm-offer {
+   position: relative;
+   max-width: 420px;
+   width: 100%;
+   justify-self: center;
+   margin-top: 8px;
+   padding: 34px 30px 30px;
+   text-align: center;
+   background: var(--card);
+   border: 1.5px dashed rgba(217, 164, 65, .5);
+   border-radius: 18px;
+   box-shadow: var(--shadow)
+}
+
+.adm-offer[hidden] {
+   display: none
+}
+
+.adm-offer .eyebrow {
+   justify-content: center
+}
+
+.adm-offer .eyebrow:after {
+   content: "";
+   width: 26px;
+   height: 2px;
+   background: var(--accent);
+   border-radius: 2px
+}
+
+.adm-big {
+   display: block;
+   font-family: var(--f-display);
+   font-size: 3.4rem;
+   font-weight: 700;
+   line-height: 1.1;
+   color: var(--gold);
+   margin: 6px 0 4px
+}
+
+.adm-offer p {
+   margin: 0 auto 20px;
+   max-width: 22em;
+   color: var(--muted)
+}
+
+.adm-offer p strong {
+   color: var(--text);
+   font-weight: 600
+}
+
+@media(max-width:1024px) {
+   .adm {
+      grid-template-columns: 1fr;
+      gap: 32px
+   }
+
+   .adm-offer {
+      margin-top: 0
+   }
+}
+
+/* ===== admission offer card: animations ===== */
+.adm-offer {
+   --ax: 48px;
+   --ay: 0px;
+   opacity: 0;
+   overflow: hidden;
+   will-change: transform, opacity
+}
+
+.adm-offer.show {
+   animation: offerIn .8s cubic-bezier(.22, .8, .3, 1) forwards
+}
+
+.adm-offer::after {
+   content: "";
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   width: 45%;
+   background: linear-gradient(110deg, transparent, rgba(217, 164, 65, .14), transparent);
+   transform: translate3d(-130%, 0, 0);
+   pointer-events: none;
+   will-change: transform
+}
+
+.adm-offer.show::after {
+   animation: offerSweep 5s 1.6s ease-in-out infinite
+}
+
+.adm-big {
+   width: fit-content;
+   margin-left: auto;
+   margin-right: auto
+}
+
+.adm-offer .o-left .ic {
+   transform-origin: 50% 55%;
+   animation: clockTick 4s ease-in-out infinite
+}
+
+@keyframes offerIn {
+   from {
+      opacity: 0;
+      transform: translate(var(--ax), var(--ay))
+   }
+
+   to {
+      opacity: 1;
+      transform: none
+   }
+}
+
+@keyframes offerSweep {
+   0% {
+      transform: translate3d(-130%, 0, 0)
+   }
+
+   40%,
+   100% {
+      transform: translate3d(330%, 0, 0)
+   }
+}
+
+@keyframes clockTick {
+
+   0%,
+   88%,
+   100% {
+      transform: rotate(0)
+   }
+
+   92% {
+      transform: rotate(-16deg)
+   }
+
+   96% {
+      transform: rotate(16deg)
+   }
+}
+
+@media(max-width:1024px) {
+   .adm-offer {
+      --ax: 0px;
+      --ay: 36px
+   }
+}
+
+@media(prefers-reduced-motion:reduce) {
+   .adm-offer {
+      opacity: 1
+   }
+}
+
+/* phones: no offer card */
+@media(max-width:640px) {
+   .adm-offer {
+      display: none !important
+   }
+}
+
+/* ===== course cards: postage-stamp edge + dashed inner frame (like the hero offer) ===== */
+#courseGrid {
+   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .35))
+}
+
+.card.course {
+   --r: 6px;
+   --s: 20px;
+   border: 0;
+   border-radius: 0;
+   box-shadow: none;
+   padding: 50px 24px 22px;
+   -webkit-mask:
+      radial-gradient(circle at 50% 0, #0000 var(--r), #000 calc(var(--r) + .5px)) 0 0/var(--s) 100% round no-repeat,
+      radial-gradient(circle at 50% 100%, #0000 var(--r), #000 calc(var(--r) + .5px)) 0 0/var(--s) 100% round no-repeat,
+      radial-gradient(circle at 0 50%, #0000 var(--r), #000 calc(var(--r) + .5px)) 0 0/100% var(--s) no-repeat round,
+      radial-gradient(circle at 100% 50%, #0000 var(--r), #000 calc(var(--r) + .5px)) 0 0/100% var(--s) no-repeat round;
+   -webkit-mask-composite: source-in;
+   mask:
+      radial-gradient(circle at 50% 0, #0000 var(--r), #000 calc(var(--r) + .5px)) 0 0/var(--s) 100% round no-repeat,
+      radial-gradient(circle at 50% 100%, #0000 var(--r), #000 calc(var(--r) + .5px)) 0 0/var(--s) 100% round no-repeat,
+      radial-gradient(circle at 0 50%, #0000 var(--r), #000 calc(var(--r) + .5px)) 0 0/100% var(--s) no-repeat round,
+      radial-gradient(circle at 100% 50%, #0000 var(--r), #000 calc(var(--r) + .5px)) 0 0/100% var(--s) no-repeat round;
+   mask-composite: intersect
+}
+
+.card.course::before {
+   content: "";
+   position: absolute;
+   inset: 10px;
+   border: 1.5px dashed rgba(217, 164, 65, .4);
+   border-radius: 4px;
+   pointer-events: none;
+   transition: border-color .3s
+}
+
+.card.course:hover {
+   border-color: transparent;
+   box-shadow: none
+}
+
+.card.course:hover::before {
+   border-color: rgba(217, 164, 65, .8)
+}
+
+/* fee tag sits inside the dashed frame */
+.course .free {
+   top: 11px;
+   right: 11px;
+   border-radius: 0 3px 0 10px;
+   max-width: calc(100% - 60px)
+}
+
+@media(hover:none) {
+   .card.course:hover::before {
+      border-color: rgba(217, 164, 65, .4)
+   }
+}
+
+/* course cards: no dashed frame; faint notebook-paper ruling instead */
+.card.course::before {
+   content: none
+}
+
+.card.course {
+   padding-left: 36px;
+   background-color: var(--card);
+   background-image:
+      linear-gradient(90deg, transparent 24px, rgba(217, 164, 65, .28) 24px 25.5px, transparent 25.5px),
+      repeating-linear-gradient(to bottom, transparent 0 31px, rgba(255, 255, 255, .045) 31px 32px)
+}
+
+.course .free {
+   top: 0;
+   right: 0;
+   border-radius: 0 0 0 10px
+}
+
+/* fee tag: proper inset + padding, clear of the stamp edge */
+.course .free {
+   top: 16px;
+   right: 18px;
+   border-radius: 6px;
+   padding: 5px 12px;
+   max-width: calc(100% - 36px);
+   font-size: .78rem;
+   line-height: 1.4;
+   box-shadow: none
+}
+
+.card.course {
+   padding-top: 58px
+}
+
+/* course names stay on one line: font scales with the card width */
+.card.course {
+   container-type: inline-size
+}
+
+.card.course h3 {
+   white-space: nowrap;
+   font-size: clamp(.8rem, 4.5cqi, 1.18rem)
+}
+
+/* bigger course names (still one line) */
+.card.course {
+   padding-right: 18px
+}
+
+.card.course h3 {
+   font-size: clamp(.9rem, 5.3cqi, 1.3rem)
+}
+
+/* phones + tablets: wider cards, so course names can be bigger */
+@media(max-width:1024px) {
+   .card.course {
+      padding-left: 32px;
+      padding-right: 14px
+   }
+
+   .card.course h3 {
+      font-size: clamp(1rem, 5.9cqi, 1.45rem)
+   }
+}
+
+/* course titles: bigger (cqi is measured on the card's inner width) */
+.card.course h3 {
+   font-size: clamp(1rem, 7cqi, 1.5rem)
+}
+
+@media(max-width:1024px) {
+   .card.course h3 {
+      font-size: clamp(1rem, 7cqi, 1.5rem)
+   }
+}
+
+/* course titles: bigger still; the few long names may wrap to a second line instead of overflowing */
+.card.course h3,
+.card.course h3 {
+   white-space: normal;
+   text-wrap: balance;
+   line-height: 1.3;
+   font-size: clamp(1.05rem, 7.6cqi, 1.6rem)
+}
+
+@media(max-width:1024px) {
+   .card.course h3 {
+      font-size: clamp(1.05rem, 7.6cqi, 1.6rem)
+   }
+}
