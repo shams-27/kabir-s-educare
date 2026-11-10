@@ -11,10 +11,14 @@ html {
    --btn: #2e5e4e;
    --head: #1f4a3d;
    --foot: #1f4a3d;
-   --accent: #b5532a;
-   --gold: #c8963e;
+   --accent: #d9a441;
+   --gold: #d9a441;
    --line: #e3d6b8;
    --shadow: 0 6px 20px rgba(60, 45, 20, .10);
+   /* 60-30-10: 60% dark neutral (--bg, --card) | 30% green (--sec) | 10% gold (--btn) */
+   --sec: #1f4a3d;
+   --sec-soft: color-mix(in srgb, #1f4a3d 55%, transparent);
+   --on-btn: #1b1a14;
    box-sizing: border-box;
    padding-top: env(safe-area-inset-top, 0px);
    padding-bottom: env(safe-area-inset-bottom, 0px)
@@ -28,10 +32,11 @@ html {
       --muted: #b9b09a;
       --line: #3b3827;
       --pri: #8fcaaf;
-      --btn: #3d7562;
+      --btn: #d9a441;
       --head: #d6e8dc;
-      --foot: #11140f;
-      --accent: #e0925f;
+      --foot: #173a30;
+      --accent: #d9a441;
+      --gold: #d9a441;
       --shadow: 0 6px 20px rgba(0, 0, 0, .4)
    }
 }
@@ -43,10 +48,11 @@ html {
    --muted: #b9b09a;
    --line: #3b3827;
    --pri: #8fcaaf;
-   --btn: #3d7562;
+   --btn: #d9a441;
    --head: #d6e8dc;
-   --foot: #11140f;
-   --accent: #e0925f;
+   --foot: #173a30;
+   --accent: #d9a441;
+   --gold: #d9a441;
    --shadow: 0 6px 20px rgba(0, 0, 0, .4)
 }
 
@@ -82,8 +88,8 @@ header {
    position: sticky;
    top: 0;
    z-index: 20;
-   background: var(--card);
-   border-bottom: 1px solid var(--line);
+   background: var(--sec);
+   border-bottom: 1px solid rgba(255, 255, 255, .1);
    padding-top: env(safe-area-inset-top, 0px)
 }
 
@@ -128,7 +134,7 @@ nav a:hover {
 .btn {
    display: inline-block;
    background: var(--btn);
-   color: #fff !important;
+   color: var(--on-btn) !important;
    padding: 10px 20px;
    border-radius: 30px;
    font-weight: 600;
@@ -140,6 +146,7 @@ nav a:hover {
 
 .btn.alt {
    background: transparent;
+   color: #fff !important;
    border: 2px solid #fff
 }
 
@@ -212,7 +219,7 @@ nav a:hover {
 .offer b {
    display: block;
    font-size: 3.4rem;
-   color: #b5532a;
+   color: #8a5a0f;
    line-height: 1
 }
 
@@ -286,7 +293,7 @@ h2 {
 
 .why .card:before {
    content: "";
-   background: var(--btn) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/12px no-repeat;
+   background: #3d7562 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/12px no-repeat;
    border-radius: 50%;
    min-width: 22px;
    height: 22px;
@@ -315,7 +322,7 @@ h2 {
 
 .tab.on {
    background: var(--btn);
-   color: #fff;
+   color: var(--on-btn);
    border-color: var(--btn)
 }
 
@@ -456,8 +463,8 @@ footer {
    position: fixed;
    right: 16px;
    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-   background: #25a244;
-   color: #fff;
+   background: var(--btn);
+   color: var(--on-btn);
    border-radius: 30px;
    padding: 12px 18px;
    font-weight: 600;
@@ -489,7 +496,7 @@ footer {
       left: 0;
       right: 0;
       top: 100%;
-      background: var(--card);
+      background: var(--sec);
       flex-direction: column;
       padding: 16px;
       border-bottom: 1px solid var(--line);
@@ -545,7 +552,7 @@ h1 {
 h1 em {
    font-style: normal;
    color: #f2c879;
-   border-bottom: 3px solid #c8963e;
+   border-bottom: 3px solid #d9a441;
    padding-bottom: 2px
 }
 
@@ -737,7 +744,7 @@ h2:after {
 #courses,
 #method,
 #contact {
-   background: color-mix(in srgb, var(--card) 84%, transparent) !important
+   background: var(--sec-soft) !important
 }
 
 /* hero: ruled notebook lines + soft glow */
@@ -817,15 +824,15 @@ h2:after {
 
 @keyframes pulseRing {
    0% {
-      box-shadow: 0 0 0 0 rgba(37, 162, 68, .55), var(--shadow)
+      box-shadow: 0 0 0 0 rgba(217, 164, 65, .55), var(--shadow)
    }
 
    70% {
-      box-shadow: 0 0 0 16px rgba(37, 162, 68, 0), var(--shadow)
+      box-shadow: 0 0 0 16px rgba(217, 164, 65, 0), var(--shadow)
    }
 
    100% {
-      box-shadow: 0 0 0 0 rgba(37, 162, 68, 0), var(--shadow)
+      box-shadow: 0 0 0 0 rgba(217, 164, 65, 0), var(--shadow)
    }
 }
 
@@ -892,7 +899,7 @@ h2:after {
 h1 em {
    border-bottom: 0;
    padding-bottom: 3px;
-   background: linear-gradient(#c8963e, #c8963e) left bottom/100% 3px no-repeat;
+   background: linear-gradient(#d9a441, #d9a441) left bottom/100% 3px no-repeat;
    animation: underline 1s 1s backwards ease-out
 }
 
@@ -949,7 +956,7 @@ h1 em {
 .slot:hover {
    transform: translateY(-4px) scale(1.03);
    background: var(--btn);
-   color: #fff;
+   color: var(--on-btn);
    border-color: var(--btn)
 }
 
@@ -1137,7 +1144,7 @@ select {
       left: 0;
       right: 0;
       top: 100%;
-      background: var(--card);
+      background: var(--sec);
       flex-direction: column;
       align-items: stretch;
       gap: 0;
@@ -1737,7 +1744,7 @@ footer {
    content: "";
    position: absolute;
    inset: 9px;
-   border: 1.5px dashed rgba(181, 83, 42, .4);
+   border: 1.5px dashed rgba(154, 106, 20, .45);
    border-radius: 14px;
    pointer-events: none
 }
@@ -1768,7 +1775,7 @@ footer {
    height: 80px;
    border-radius: 50%;
    background: var(--accent);
-   color: #fff;
+   color: var(--on-btn);
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -1851,7 +1858,7 @@ footer {
    bottom: 0;
    left: 30px;
    width: 1.5px;
-   background: rgba(181, 83, 42, .16)
+   background: rgba(154, 106, 20, .18)
 }
 
 .o-pat:after {
@@ -2047,4 +2054,112 @@ footer {
 
 .wa-fb[hidden] {
    display: none
+}
+
+/* corner fee badge: button gold at lower opacity */
+.course .free {
+   background: rgba(217, 164, 65, .22);
+   color: #f2c879;
+   box-shadow: none
+}
+
+/* more space above the admission submit button */
+form>.btn[type="submit"] {
+   margin-top: 18px
+}
+
+/* ===== stats cards: quiet, matches the h2 gold-rule language ===== */
+.stat {
+   padding: 22px 16px 20px;
+   border: 1px solid var(--line);
+   color: var(--muted)
+}
+
+.stat b {
+   font-size: 2.4rem;
+   font-weight: 700;
+   color: var(--head);
+   line-height: 1.1;
+   margin-bottom: 0
+}
+
+.stat b::after {
+   content: "";
+   display: block;
+   width: 28px;
+   height: 2px;
+   margin: 10px auto 12px;
+   background: var(--gold);
+   border-radius: 2px
+}
+
+@media(max-width:640px) {
+   .stat {
+      padding: 16px 4px 14px
+   }
+
+   .stat b {
+      font-size: 1.7rem
+   }
+
+   .stat b::after {
+      width: 22px;
+      margin: 8px auto 8px
+   }
+}
+
+/* method section: 3 equal columns on desktop */
+@media(min-width:1025px) {
+   .two {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px
+   }
+
+   .two .card {
+      padding: 18px 18px 14px
+   }
+}
+
+/* contact: "any questions" card matches the height of the info column */
+.contact {
+   align-items: stretch
+}
+
+.contact>.card {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   padding: 26px 28px
+}
+
+.contact>.card h3 {
+   font-size: 1.3rem;
+   margin-bottom: .5em
+}
+
+.contact>.card p {
+   margin: 0
+}
+
+/* questions card: sized to its content, centred against the info column */
+.contact {
+   align-items: center
+}
+
+.contact>.card {
+   justify-content: flex-start
+}
+
+.q-actions {
+   display: flex;
+   gap: 12px;
+   flex-wrap: wrap;
+   margin-top: 20px
+}
+
+@media(max-width:640px) {
+   .q-actions .btn {
+      flex: 1 1 100%;
+      width: 100%
+   }
 }
