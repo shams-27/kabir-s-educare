@@ -29,12 +29,13 @@ function showB() {
   const all = [...B.morning, ...B.evening];
   const icon = c => c.startsWith('ফ্রি') ? 'i-pencil' : c.startsWith('ক্যাডেট') ? 'i-award' : 'i-book';
   const NUM = { 'চতুর্থ': '৪', 'পঞ্চম': '৫', 'ষষ্ঠ': '৬', 'সপ্তম': '৭', 'অষ্টম': '৮', 'নবম': '৯', 'দশম': '১০', 'একাদশ': '১১' };
+  const bg = c => NUM[c.split(' ')[0]] || (c.startsWith('ফ্রি') ? 'Writing' : c.startsWith('ক্যাডেট') ? 'Cadet' : '');
   const row = (c, k, cls, label) => {
     const times = all.filter(r => r[k] === c).map(r => r[0]);
     return `<div class="cl-r ${cls}"><dt>${label}</dt><dd>${times.length ? times.map(t => `<span>${t}</span>`).join('') : '<span class="none">ক্লাস নেই</span>'}</dd></div>`
   };
   document.getElementById('slots').innerHTML = courses.map((c, n) =>
-    `<div class="cl-card" role="listitem" style="--i:${n}">${NUM[c.split(' ')[0]] ? `<span class="cl-bg" aria-hidden="true">${NUM[c.split(' ')[0]]}</span>` : ''}<h3><span class="wg-ic"><svg class="ic" aria-hidden="true"><use href="#${icon(c)}"/></svg></span><span>${c}</span></h3><dl class="cl-rows">${row(c, 1, 'a', DA)}${row(c, 2, 'b', DB)}</dl></div>`
+    `<div class="cl-card" role="listitem" style="--i:${n}">${bg(c) ? `<span class="cl-bg${NUM[c.split(' ')[0]] ? '' : ' word'}" aria-hidden="true">${bg(c)}</span>` : ''}<h3><span class="wg-ic"><svg class="ic" aria-hidden="true"><use href="#${icon(c)}"/></svg></span><span>${c}</span></h3><dl class="cl-rows">${row(c, 1, 'a', DA)}${row(c, 2, 'b', DB)}</dl></div>`
   ).join('')
 }
 showB();
@@ -56,7 +57,7 @@ fillBatches();
 document.getElementById('form').onsubmit = e => {
   e.preventDefault(); const f = new FormData(e.target);
   const m = `আসসালামু আলাইকুম, আমি ভর্তি হতে চাই।%0Aনাম: ${encodeURIComponent(f.get('name'))}%0Aমোবাইল: ${encodeURIComponent(f.get('phone'))}%0Aকোর্স: ${encodeURIComponent(f.get('course'))}%0Aব্যাচ: ${encodeURIComponent(f.get('batch'))}`;
-  const url = 'https://wa.me/8801882790501?text=' + m;
+  const url = 'https://wa.me/8801718784105?text=' + m;
   const w = window.open(url, '_blank');
   // some in-app browsers block window.open, so always offer a manual link
   const fb = document.getElementById('waFb'), link = document.getElementById('waLink');
