@@ -1,34 +1,62 @@
-const courses = [
-  { n: "একাডেমিক English ব্যাচ", c: "৪র্থ–দ্বাদশ শ্রেণি (1st & 2nd Paper)", g: ["junior", "mid", "high"], d: ["সপ্তাহে ৩ দিন", "মাসে পরীক্ষা ২টি"], p: "1,000/-", u: "মাসিক (প্রি-পেইড)", f: "ভর্তি ফি: ১,০০০/- (প্রি-পেইড)" },
-  { n: "Basic Grammar কোর্স", c: "৬ষ্ঠ–৮ম ও ৯ম–দ্বাদশ শ্রেণি (একত্রে)", g: ["junior", "mid", "high"], d: ["লেকচার ৪০টি", "মোট পরীক্ষা ৫টি"], p: "4,000/-", u: "এককালীন" },
-  { n: "Free-Hand Writing কোর্স", c: "৬ষ্ঠ–৮ম ও ৯ম–১১শ শ্রেণি", g: ["junior", "mid", "high"], d: ["লেকচার ৪০টি", "মোট পরীক্ষা ৫টি"], p: "4,000/-", u: "এককালীন" },
-  { n: "SSC-English প্রস্তুতি কোর্স", c: "বোর্ড পরীক্ষার পূর্বে ৪ মাস", g: ["mid", "high"], d: ["লেকচার ৭০টি", "মোট পরীক্ষা ১০টি"], p: "6,000/-", u: "এককালীন" },
-  { n: "HSC English কোর্স কমপ্লিট", c: "বছরের যে কোনো সময়", g: ["high"], d: ["লেকচার ৭০টি", "মোট পরীক্ষা ১০টি"], p: "6,000/-", u: "এককালীন" },
-  { n: "জুনিয়র বৃত্তি প্রস্তুতি কোর্স", c: "৮ম শ্রেণি", g: ["junior", "mid"], d: ["সপ্তাহে ৬ দিন", "সপ্তাহে পরীক্ষা ১টি", "বিষয়: ইং-১, ইং-২, বাং-১, বাং-২, বাবিপ"], p: "2,000/-", u: "মাসিক (প্রি-পেইড)", f: "ভর্তি ফি: ২,০০০/- (প্রি-পেইড)" },
-  { n: "বাংলা + বাংলাদেশ ও বিশ্বপরিচয়", c: "৬ষ্ঠ–১০ম শ্রেণি", g: ["junior", "mid", "high"], d: ["সপ্তাহে ২ দিন (শুক্র–শনি)"], p: "700/-", u: "মাসিক (প্রি-পেইড)", f: "ভর্তি ফি: ৫০০/- (প্রি-পেইড)" }];
-const grid = document.getElementById('courseGrid'), sel = document.getElementById('courseSel');
+const courses = ["চতুর্থ শ্রেণি", "পঞ্চম শ্রেণি", "ষষ্ঠ শ্রেণি", "সপ্তম শ্রেণি", "অষ্টম শ্রেণি", "নবম শ্রেণি", "দশম শ্রেণি", "একাদশ শ্রেণি", "ফ্রি হ্যান্ড রাইটিং কোর্স", "ক্যাডেট ভর্তি ইংরেজি (ষষ্ঠ)"];
+const sel = document.getElementById('courseSel');
 const reduceMotion = matchMedia('(prefers-reduced-motion:reduce)').matches;
-const bn = t => t.replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
 // keeps the "on" class and aria-selected in sync for any tab group
 const selectTab = (group, active) => [...group].forEach(x => { const on = x === active; x.classList.toggle('on', on); x.setAttribute('aria-selected', on) });
-function render(f) { grid.innerHTML = courses.filter(c => f === 'all' || c.g.includes(f)).map(c => `<div class="card course"><h3>${c.n}</h3><div class="cls">${c.c}</div><ul>${c.d.map(x => `<li>${x}</li>`).join('')}</ul><div class="price">${bn(c.p)} <small>${c.u}</small></div>${c.f ? `<span class="free">${c.f}</span>` : ''}<a class="btn" href="#admission" data-c="${c.n}">ভর্তি হতে চাই</a></div>`).join('') }
-render('all');
-sel.innerHTML = courses.map(c => `<option>${c.n}</option>`).join('');
-document.getElementById('tabs').onclick = e => { const b = e.target.closest('.tab'); if (!b) return; selectTab(e.currentTarget.children, b); render(b.dataset.f) };
-grid.onclick = e => { const a = e.target.closest('[data-c]'); if (a) sel.value = a.dataset.c };
+sel.innerHTML = courses.map(n => `<option>${n}</option>`).join('');
+
+/* ===== batch schedule: [time, শনি–সোম–বুধ class, রবি–মঙ্গল–বৃহস্পতি class] ===== */
+const DA = 'শনি–সোম–বুধ', DB = 'রবি–মঙ্গল–বৃহ';
 const B = {
-  morning: { d: 'শনি–সোম–বুধ  |  রবি–মঙ্গল–বৃহস্পতি', s: ['সকাল ৭:০০–৮:০০', 'সকাল ৮:০০–৯:০০', 'সকাল ৯:৩০–১০:৩০', 'সকাল ১০:৩০–১১:৩০', 'সকাল ১১:৩০–১২:৩০'] },
-  evening: { d: 'শনি–সোম–বুধ  |  রবি–মঙ্গল–বৃহস্পতি', s: ['বিকাল ৩:০০–৪:০০', 'বিকাল ৪:০০–৫:০০', 'বিকাল ৫:০০–৬:০০', 'বিকাল ৬:০০–৭:০০', 'সন্ধ্যা ৭:০০–৮:০০'] }
+  morning: [
+    ['সকাল ৭:০০ টা', 'অষ্টম শ্রেণি', 'ষষ্ঠ শ্রেণি'],
+    ['সকাল ৮:০০ টা', 'নবম শ্রেণি', 'সপ্তম শ্রেণি'],
+    ['সকাল ৯:০০ টা', 'দশম শ্রেণি', null],
+    ['সকাল ১০:৩০ টা', 'নবম শ্রেণি', 'ষষ্ঠ শ্রেণি'],
+    ['সকাল ১১:৪৫ মি.', 'দশম শ্রেণি', null]
+  ],
+  evening: [
+    ['দুপুর ২:০০ টা', 'চতুর্থ শ্রেণি', 'চতুর্থ শ্রেণি'],
+    ['বিকাল ৩:০০ টা', 'পঞ্চম শ্রেণি', 'পঞ্চম শ্রেণি'],
+    ['বিকাল ৪:০০ টা', 'ষষ্ঠ শ্রেণি', null],
+    ['বিকাল ৫:০০ টা', 'সপ্তম শ্রেণি', 'অষ্টম শ্রেণি'],
+    ['সন্ধ্যা ৬:০০ টা', 'একাদশ শ্রেণি', 'দশম শ্রেণি'],
+    ['রাত ৭:০০ টা', 'ফ্রি হ্যান্ড রাইটিং কোর্স', 'ক্যাডেট ভর্তি ইংরেজি (ষষ্ঠ)']
+  ]
 };
-function showB(k) { document.getElementById('days').innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-cal"/></svg> ' + B[k].d; document.getElementById('slots').innerHTML = B[k].s.map(x => `<div class="slot">${x}</div>`).join('') }
-showB('morning');
-document.querySelectorAll('[data-b]').forEach(b => b.onclick = () => { selectTab(document.querySelectorAll('[data-b]'), b); showB(b.dataset.b) });
+/* one card per class: each day group is a labelled row with its times (built from B above) */
+function showB() {
+  const all = [...B.morning, ...B.evening];
+  const icon = c => c.startsWith('ফ্রি') ? 'i-pencil' : c.startsWith('ক্যাডেট') ? 'i-award' : 'i-book';
+  const NUM = { 'চতুর্থ': '৪', 'পঞ্চম': '৫', 'ষষ্ঠ': '৬', 'সপ্তম': '৭', 'অষ্টম': '৮', 'নবম': '৯', 'দশম': '১০', 'একাদশ': '১১' };
+  const row = (c, k, cls, label) => {
+    const times = all.filter(r => r[k] === c).map(r => r[0]);
+    return `<div class="cl-r ${cls}"><dt>${label}</dt><dd>${times.length ? times.map(t => `<span>${t}</span>`).join('') : '<span class="none">ক্লাস নেই</span>'}</dd></div>`
+  };
+  document.getElementById('slots').innerHTML = courses.map((c, n) =>
+    `<div class="cl-card" role="listitem" style="--i:${n}">${NUM[c.split(' ')[0]] ? `<span class="cl-bg" aria-hidden="true">${NUM[c.split(' ')[0]]}</span>` : ''}<h3><span class="wg-ic"><svg class="ic" aria-hidden="true"><use href="#${icon(c)}"/></svg></span><span>${c}</span></h3><dl class="cl-rows">${row(c, 1, 'a', DA)}${row(c, 2, 'b', DB)}</dl></div>`
+  ).join('')
+}
+showB();
+
+/* ===== admission form: batch options come from the schedule above ===== */
+const batchSel = document.getElementById('batchSel');
+function fillBatches() {
+  const c = sel.value, out = [];
+  [...B.morning, ...B.evening].forEach(([t, a, b]) => {
+    if (a === c) out.push(`${t} (${DA})`);
+    if (b === c) out.push(`${t} (রবি–মঙ্গল–বৃহস্পতি)`);
+  });
+  batchSel.innerHTML = out.map(x => `<option>${x}</option>`).join('');
+}
+sel.onchange = fillBatches;
+fillBatches();
 
 /* ===== admission form → WhatsApp ===== */
 document.getElementById('form').onsubmit = e => {
   e.preventDefault(); const f = new FormData(e.target);
   const m = `আসসালামু আলাইকুম, আমি ভর্তি হতে চাই।%0Aনাম: ${encodeURIComponent(f.get('name'))}%0Aমোবাইল: ${encodeURIComponent(f.get('phone'))}%0Aকোর্স: ${encodeURIComponent(f.get('course'))}%0Aব্যাচ: ${encodeURIComponent(f.get('batch'))}`;
-  const url = 'https://wa.me/8801718784105?text=' + m;
+  const url = 'https://wa.me/8801882790501?text=' + m;
   const w = window.open(url, '_blank');
   // some in-app browsers block window.open, so always offer a manual link
   const fb = document.getElementById('waFb'), link = document.getElementById('waLink');
@@ -83,26 +111,10 @@ document.querySelectorAll('[data-n]').forEach(e => io.observe(e));
   addEventListener('resize', () => { if (hf) hf.style.setProperty('--h', (hf.parentElement.offsetHeight + 160) + 'px') });
 })();
 
-/* ===== offer countdown (offer valid before 15 December 2026) =====
-   The end date is fixed, so the countdown stays hidden after the offer
-   expires instead of restarting for next year. Update it for a new offer. */
-(function () {
-  const OFFER_END = new Date(2026, 11, 14, 23, 59, 59); // 14 Dec 2026, 11:59:59 PM
-  const f = document.getElementById('offerFoot'), t = document.getElementById('offerTxt');
-  if (!f || !t) return;
-  const now = new Date();
-  if (OFFER_END < now) return;
-  const d = Math.floor((OFFER_END - now) / 864e5);
-  t.textContent = d === 0 ? 'আজই অফারের শেষ দিন!' : 'অফার শেষ হতে আর ' + d.toLocaleString('bn-BD', { useGrouping: false }) + ' দিন বাকি';
-  f.hidden = false;
-  const ao = document.getElementById('admOffer'), at = document.getElementById('admOfferTxt');
-  if (ao && at) { at.textContent = t.textContent; ao.hidden = false }
-})();
-
 /* ===== scroll reveal ===== */
 const rvIO = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); rvIO.unobserve(x.target) } }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
 function reveal(root) {
-  (root || document).querySelectorAll('.card,.stat,.slot,section h2,.sub,.eyebrow,.tabs,.days,form label,form .btn,.quote,.contact .btn,.contact p').forEach(el => {
+  (root || document).querySelectorAll('.card,.stat,.slot,.cl-card,section h2,.sub,.eyebrow,.tabs,.days,form label,form .btn,.quote,.contact .btn,.contact p').forEach(el => {
     if (el.classList.contains('rv')) return;
     const i = [...el.parentElement.children].indexOf(el);
     el.style.setProperty('--d', (Math.min(i, 10) * 0.07).toFixed(2) + 's');
@@ -110,9 +122,9 @@ function reveal(root) {
   });
 }
 reveal();
-['courseGrid', 'slots'].forEach(id => new MutationObserver(() => reveal(document.getElementById(id))).observe(document.getElementById(id), { childList: true }));
+new MutationObserver(() => reveal(document.getElementById('slots'))).observe(document.getElementById('slots'), { childList: true });
 
-/* ===== admission offer card: animate in when scrolled into view ===== */
+/* ===== admission benefit card: animate in when scrolled into view ===== */
 (function () {
   const c = document.getElementById('admOffer');
   if (!c) return;
