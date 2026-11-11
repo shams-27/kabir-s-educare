@@ -132,3 +132,18 @@ new MutationObserver(() => reveal(document.getElementById('slots'))).observe(doc
     if (x.isIntersecting) { x.target.classList.add('show'); o.unobserve(x.target) }
   }), { threshold: .2 }).observe(c);
 })();
+
+/* ===== "Why Kabir's" section: hidden on landing, fades in once the visitor starts scrolling ===== */
+(function () {
+  const w = document.getElementById('why');
+  if (!w) return;
+  w.classList.add('scroll-in');
+  const check = () => {
+    if (scrollY > 10 && w.getBoundingClientRect().top < innerHeight * .85) {
+      w.classList.add('show');
+      removeEventListener('scroll', check);
+    }
+  };
+  addEventListener('scroll', check, { passive: true });
+  check();
+})();
