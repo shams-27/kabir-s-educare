@@ -3167,7 +3167,7 @@ header {
    }
 }
 
-/* ===== method section: one tall card + two stacked cards (no empty gaps) ===== */
+/* ===== method section: 2 x 2 cards, each row the same height ===== */
 #method .method-grid {
    grid-template-columns: 1fr;
    gap: 16px;
@@ -3219,20 +3219,7 @@ header {
 
 @media(min-width:768px) {
    #method .method-grid {
-      grid-template-columns: 1.15fr 1fr;
-      grid-template-rows: auto 1fr
-   }
-
-   #method .method-grid>.m-main {
-      grid-row: 1 / span 2
-   }
-
-   #method .method-grid>.card:last-child:nth-child(odd) {
-      grid-column: auto
-   }
-
-   #method .method-grid>.card:last-child:not(.m-main) {
-      grid-row: 1 / span 2
+      grid-template-columns: 1fr 1fr
    }
 }
 
@@ -3896,4 +3883,167 @@ section[style*="--band"] {
 .fee-stub>* {
    position: relative;
    z-index: 1
+}
+
+/* ===== hanging sign: chalkboard in a wooden frame ===== */
+.offer-wrap::before {
+   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M16 100 L50 3 L84 100' fill='none' stroke='%23b79b6e' stroke-width='2' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+   filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .45))
+}
+
+.offer {
+   border: 10px solid transparent;
+   border-radius: 12px;
+   background:
+      radial-gradient(circle at 5px 5px, #cdb98f 0 2.5px, transparent 3px) border-box,
+      radial-gradient(circle at calc(100% - 5px) 5px, #cdb98f 0 2.5px, transparent 3px) border-box,
+      radial-gradient(circle at 5px calc(100% - 5px), #cdb98f 0 2.5px, transparent 3px) border-box,
+      radial-gradient(circle at calc(100% - 5px) calc(100% - 5px), #cdb98f 0 2.5px, transparent 3px) border-box,
+      radial-gradient(ellipse at 25% 0, rgba(255, 255, 255, .07), transparent 60%) padding-box,
+      linear-gradient(#242427, #242427) padding-box,
+      repeating-linear-gradient(90deg, #6f5640 0 6px, #624c37 6px 11px) border-box;
+   box-shadow: inset 0 2px 12px rgba(0, 0, 0, .65), 0 18px 34px rgba(0, 0, 0, .5)
+}
+
+.offer::before {
+   display: block;
+   content: "";
+   position: absolute;
+   inset: 8px;
+   height: auto;
+   border: 1.5px dashed rgba(228, 221, 204, .28);
+   border-radius: 6px;
+   background: none;
+   pointer-events: none
+}
+
+.offer .sp {
+   color: #e2703a
+}
+
+.offer b {
+   color: #ebe4d3;
+   text-shadow: 0 0 1px rgba(255, 255, 255, .5), 0 0 14px rgba(228, 221, 204, .12)
+}
+
+.offer .o-tear {
+   border-top: 2px dashed rgba(228, 221, 204, .22)
+}
+
+/* ===== sign text: calligraphy (Galada) ===== */
+.offer .sp,
+.offer b,
+.offer p {
+   font-family: 'Galada', 'Noto Serif Bengali', Georgia, serif;
+   font-weight: 400
+}
+
+.offer .sp {
+   color: #e98a5b;
+   font-size: 1.05rem;
+   letter-spacing: .12em;
+   text-transform: none
+}
+
+.offer b {
+   color: #ebe4d3;
+   font-size: 2.9rem;
+   line-height: 1.25;
+   text-shadow: 0 2px 10px rgba(0, 0, 0, .35)
+}
+
+.offer b::after {
+   content: "";
+   display: block;
+   width: 50%;
+   height: 1px;
+   margin: 10px auto 0;
+   background: linear-gradient(90deg, transparent, #d8be93, transparent)
+}
+
+.offer p {
+   color: #c9c2b0;
+   font-size: 1.2rem;
+   line-height: 1.6
+}
+
+.offer p strong {
+   color: #d8be93;
+   font-weight: 400
+}
+
+/* ===== sign: larger text ===== */
+.offer {
+   padding: 34px 28px 30px
+}
+
+.offer b {
+   font-size: 3.5rem
+}
+
+.offer p {
+   font-size: 1.55rem
+}
+
+@media(max-width:480px) {
+   .offer b {
+      font-size: 2.9rem
+   }
+
+   .offer p {
+      font-size: 1.3rem
+   }
+}
+
+/* ===== hero quick points ===== */
+.hero-points {
+   width: 100%;
+   max-width: 440px;
+   justify-self: end;
+   padding: 22px 24px;
+   color: var(--text)
+}
+
+.hero-points h3 {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   margin: 0 0 14px;
+   padding-bottom: 14px;
+   border-bottom: 1px solid var(--line);
+   font-size: 1.2rem;
+   color: var(--head)
+}
+
+.hero-points ul {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   display: grid;
+   gap: 10px
+}
+
+.hero-points li {
+   position: relative;
+   padding-left: 26px;
+   line-height: 1.6
+}
+
+.hero-points li::before {
+   content: "";
+   position: absolute;
+   left: 2px;
+   top: .55em;
+   width: 12px;
+   height: 7px;
+   border-left: 2px solid var(--pri);
+   border-bottom: 2px solid var(--pri);
+   transform: rotate(-45deg)
+}
+
+@media(max-width:1024px) {
+   .hero-points {
+      justify-self: stretch;
+      max-width: 520px
+   }
 }
